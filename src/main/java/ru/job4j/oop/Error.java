@@ -15,7 +15,7 @@ public class Error {
         this.message = message;
     }
 
-    public void printInfo(boolean active, int status, String message) {
+    public void printInfo() {
         System.out.println("Active: " + active);
         System.out.println("Status: " + status);
         System.out.println("Message: " + message);
@@ -23,11 +23,11 @@ public class Error {
 
     public static void main(String[] args) {
         Error error0 = new Error();
-        error0.printInfo(error0.active, error0.status, error0.message);
+        error0.printInfo();
         Error error1 = new Error(true, 1, "First message!");
-        error1.printInfo(error1.active, error1.status, error1.message);
+        error1.printInfo();
         Error error2 = new Error(false, 2, "Second message!");
-        error2.printInfo(error2.active, error2.status, error2.message);
+        error2.printInfo();
     }
 
 }
