@@ -3,15 +3,11 @@ package ru.job4j.oop.pojo.library;
 public class Library {
 
     public static void main(String[] args) {
-        Book book0 = new Book("Head first Java", 300);
-        Book book1 = new Book("The philosophy of java", 500);
-        Book book2 = new Book("Clean code", 1000);
-        Book book3 = new Book("Spring in action", 350);
         Book[] books = new Book[4];
-        books[0] = book0;
-        books[1] = book1;
-        books[2] = book2;
-        books[3] = book3;
+        books[0] = new Book("Head first Java", 300);
+        books[1] = new Book("The philosophy of java", 500);
+        books[2] = new Book("Clean code", 1000);
+        books[3] = new Book("Spring in action", 350);
         System.out.println("Show books info:");
         for (Book book : books) {
             System.out.println("Book name: " + book.getName() + ", Pages count: " + book.getPageCount());
