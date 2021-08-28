@@ -1,6 +1,7 @@
 package ru.job4j.oop.profession;
 
 public class Profession {
+
     private final String name;
     private final String surname;
     private final String education;

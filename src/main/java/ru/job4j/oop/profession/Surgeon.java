@@ -6,8 +6,21 @@ package ru.job4j.oop.profession;
  */
 public class Surgeon extends Doctor {
 
-    public Surgeon(String name, String surname, String education, String birthday) {
-        super(name, surname, education, birthday);
+    /**
+     * Переменная описывает классификацию хирурга.
+     */
+    private String classification;
+
+    public Surgeon(String name, String surname, String education, String birthday, int grade) {
+        super(name, surname, education, birthday, grade);
+    }
+
+    public String getClassification() {
+        return classification;
+    }
+
+    public void setClassification(String classification) {
+        this.classification = classification;
     }
 
     /**

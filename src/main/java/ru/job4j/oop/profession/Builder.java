@@ -5,8 +5,18 @@ package ru.job4j.oop.profession;
  */
 public class Builder extends Engineer {
 
-    public Builder(String name, String surname, String education, String birthday) {
-        super(name, surname, education, birthday);
+    private String buildingType;
+
+    public Builder(String name, String surname, String education, String birthday, String company) {
+        super(name, surname, education, birthday, company);
+    }
+
+    public String getBuildingType() {
+        return buildingType;
+    }
+
+    public void setBuildingType(String buildingType) {
+        this.buildingType = buildingType;
     }
 
     /**
@@ -17,9 +27,9 @@ public class Builder extends Engineer {
      *
      * @return Готовый продукт.
      */
-    public Product designingBuilding(Product product) {
+    public Product designingBuilding(Product product, String buildingType) {
         product.setName("Building plan");
-        product.setCategory("Building");
+        product.setCategory(buildingType);
         return product;
     }
 

@@ -5,8 +5,15 @@ package ru.job4j.oop.profession;
  */
 public class Doctor extends Profession {
 
-    public Doctor(String name, String surname, String education, String birthday) {
+    private final int grade;
+
+    public Doctor(String name, String surname, String education, String birthday, int grade) {
         super(name, surname, education, birthday);
+        this.grade = grade;
+    }
+
+    public int getGrade() {
+        return grade;
     }
 
     /**

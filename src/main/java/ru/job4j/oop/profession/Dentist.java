@@ -6,8 +6,22 @@ package ru.job4j.oop.profession;
  */
 public class Dentist extends Doctor {
 
-    public Dentist(String name, String surname, String education, String birthday) {
-        super(name, surname, education, birthday);
+    /**
+     * Переменная описывает стоматолога, работает ли он в частной клинике, или в муниципальной.
+     * (true - частная, false - муниципальная)
+     */
+    private boolean individual;
+
+    public Dentist(String name, String surname, String education, String birthday, int grade) {
+        super(name, surname, education, birthday, grade);
+    }
+
+    public boolean isIndividual() {
+        return individual;
+    }
+
+    public void setIndividual(boolean individual) {
+        this.individual = individual;
     }
 
     /**
