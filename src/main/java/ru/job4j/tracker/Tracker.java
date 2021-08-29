@@ -64,6 +64,16 @@ public class Tracker {
         return result;
     }
 
+    public boolean delete(int id) {
+        boolean result = false;
+        int index = indexOf(id);
+        if (index != -1) {
+            moveArrayElementsOnIndex(index, items);
+            result = true;
+        }
+        return result;
+    }
+
     private int indexOf(int id) {
         int result = -1;
         for (int index = 0; index < size; index++) {
@@ -73,6 +83,14 @@ public class Tracker {
             }
         }
         return result;
+    }
+
+    private void moveArrayElementsOnIndex(int index, Item[] items) {
+        int scrPos = index + 1;
+        int length = size - index - 1;
+        System.arraycopy(items, scrPos, items, index, length);
+        items[size - 1] = null;
+        size--;
     }
 
 }
