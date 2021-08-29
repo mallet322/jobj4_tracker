@@ -60,7 +60,9 @@ public class Tracker {
         boolean result = false;
         int index = indexOf(id);
         if (index != -1) {
-            moveArrayElementsOnIndex(index, items);
+            System.arraycopy(items, index + 1, items, index, size - index - 1);
+            items[size - 1] = null;
+            size--;
             result = true;
         }
         return result;
@@ -75,14 +77,6 @@ public class Tracker {
             }
         }
         return result;
-    }
-
-    private void moveArrayElementsOnIndex(int index, Item[] items) {
-        int scrPos = index + 1;
-        int length = size - index - 1;
-        System.arraycopy(items, scrPos, items, index, length);
-        items[size - 1] = null;
-        size--;
     }
 
 }
