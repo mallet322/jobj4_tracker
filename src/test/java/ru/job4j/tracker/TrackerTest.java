@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import static org.hamcrest.Matchers.is;
+import org.junit.Assert;
 import static org.junit.Assert.assertThat;
 import org.junit.Test;
 
@@ -62,6 +63,18 @@ public class TrackerTest {
         tracker.add(new Item("First"));
         Item[] result = tracker.findByName(second.getName());
         assertThat(result[1].getName(), is(second.getName()));
+    }
+
+    @Test
+    public void whenReplace() {
+        Tracker tracker = new Tracker();
+        Item itemBeforeUpdate = new Item("Item before update");
+        tracker.add(itemBeforeUpdate);
+        Item itemAfterUpdate = new Item("Item after update");
+        Assert.assertTrue(tracker.replace(itemBeforeUpdate.getId(), itemAfterUpdate));
+        String expected = itemAfterUpdate.getName();
+        String actual = tracker.findById(itemBeforeUpdate.getId()).getName();
+        Assert.assertEquals(expected, actual);
     }
 
 }
