@@ -42,15 +42,7 @@ public class Tracker {
     }
 
     public Item[] findAll() {
-        Item[] itemsWithoutNull = new Item[size];
-        int temp = 0;
-        for (Item item : items) {
-            if (item != null) {
-                itemsWithoutNull[temp] = item;
-                temp++;
-            }
-        }
-        return Arrays.copyOf(itemsWithoutNull, temp);
+        return Arrays.copyOf(items, size);
     }
 
     public boolean replace(int id, Item item) {
