@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.Random;
+
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.Matchers.is;
 import org.junit.Assert;
@@ -81,10 +83,19 @@ public class TrackerTest {
     @Test
     public void whenDelete() {
         Tracker tracker = new Tracker();
-        Item item = new Item("Item before update");
+        Item item = new Item();
         tracker.add(item);
-        tracker.delete(item.getId());
-        Assert.assertNotNull(item);
+        Assert.assertTrue(tracker.delete(item.getId()));
+        Assert.assertNull(tracker.findById(item.getId()));
+    }
+
+    @Test
+    public void whenNotDelete() {
+        Tracker tracker = new Tracker();
+        Item item = new Item();
+        tracker.add(item);
+        Random random = new Random();
+        Assert.assertFalse(tracker.delete(random.nextInt()));
     }
 
 }
