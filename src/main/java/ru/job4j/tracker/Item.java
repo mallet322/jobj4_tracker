@@ -47,10 +47,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item: " + System.lineSeparator() +
-                "id: " + id + System.lineSeparator() +
-                "name: " + name + System.lineSeparator() +
-                "created: " + created.format(FORMATTER) + System.lineSeparator();
+        return "Item{" + "id= " + id + ", name= " + name + ", created= " + created.format(FORMATTER) + "}";
     }
 
 }
