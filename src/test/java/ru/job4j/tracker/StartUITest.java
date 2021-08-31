@@ -11,7 +11,7 @@ public class StartUITest {
         String[] answers = {"0", "Some Item", "1"};
         Input input = new StubInput(answers);
         Tracker tracker = new Tracker();
-        UserAction[] actions = {new CreateAction(out), new ExitAction()};
+        UserAction[] actions = {new CreateAction(out), new ExitAction(out)};
         new StartUI(out).init(input, tracker, actions);
         Item actual = tracker.findAll()[0];
         Item expected = new Item("Some Item");
@@ -26,7 +26,7 @@ public class StartUITest {
         tracker.add(item);
         String[] answers = {"0", String.valueOf(item.getId()), "Replaced Item", "1"};
         Input input = new StubInput(answers);
-        UserAction[] actions = {new ReplaceAction(out), new ExitAction()};
+        UserAction[] actions = {new ReplaceAction(out), new ExitAction(out)};
         new StartUI(out).init(input, tracker, actions);
         Item expected = new Item("Replaced Item");
         Item actual = tracker.findAll()[0];
@@ -41,7 +41,7 @@ public class StartUITest {
         tracker.add(item);
         String[] answers = {"0", String.valueOf(item.getId()), "1"};
         Input input = new StubInput(answers);
-        UserAction[] actions = {new DeleteAction(out), new ExitAction()};
+        UserAction[] actions = {new DeleteAction(out), new ExitAction(out)};
         new StartUI(out).init(input, tracker, actions);
         Assert.assertNull(tracker.findById(item.getId()));
     }
@@ -54,7 +54,7 @@ public class StartUITest {
         tracker.add(item);
         String[] answers = {"0", "1"};
         Input input = new StubInput(answers);
-        UserAction[] actions = {new FindAllAction(out), new ExitAction()};
+        UserAction[] actions = {new FindAllAction(out), new ExitAction(out)};
         new StartUI(out).init(input, tracker, actions);
         Item[] expectedArray = {item};
         Assert.assertArrayEquals(expectedArray, tracker.findAll());
@@ -68,7 +68,7 @@ public class StartUITest {
         tracker.add(item);
         String[] answers = {"0", String.valueOf(item.getId()), "1"};
         Input input = new StubInput(answers);
-        UserAction[] actions = {new FindByIdAction(out), new ExitAction()};
+        UserAction[] actions = {new FindByIdAction(out), new ExitAction(out)};
         new StartUI(out).init(input, tracker, actions);
         Assert.assertEquals(item, tracker.findById(item.getId()));
     }
@@ -85,7 +85,7 @@ public class StartUITest {
         tracker.add(item2);
         String[] answers = {"0", String.valueOf(item0.getName()), "1"};
         Input input = new StubInput(answers);
-        UserAction[] actions = {new FindByNameAction(out), new ExitAction()};
+        UserAction[] actions = {new FindByNameAction(out), new ExitAction(out)};
         new StartUI(out).init(input, tracker, actions);
         Item[] expectedArray = {item0, item1, item2};
         Assert.assertArrayEquals(expectedArray, tracker.findByName(item0.getName()));
@@ -97,7 +97,7 @@ public class StartUITest {
         String[] answers = {"0"};
         Input input = new StubInput(answers);
         Tracker tracker = new Tracker();
-        UserAction[] actions = {new ExitAction()};
+        UserAction[] actions = {new ExitAction(out)};
         new StartUI(out).init(input, tracker, actions);
         String expected = "Menu." + System.lineSeparator() + "0. Exit" + System.lineSeparator();
         Assert.assertEquals(expected, out.toString());
