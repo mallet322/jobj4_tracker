@@ -114,7 +114,7 @@ public class StartUITest {
                 "Menu." + System.lineSeparator() +
                 "0. Exit" + System.lineSeparator() +
                 "=== Exit ===" + System.lineSeparator();
-        Assert.assertEquals(expected, out.toString());
+        Assert.assertThat(out.toString(), Matchers.is(expected));
     }
 
 }
