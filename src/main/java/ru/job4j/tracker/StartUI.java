@@ -2,12 +2,6 @@ package ru.job4j.tracker;
 
 public class StartUI {
 
-    public static void main(String[] args) {
-        Input input = new ConsoleInput();
-        Tracker tracker = new Tracker();
-        new StartUI().init(input, tracker);
-    }
-
     public void init(Input input, Tracker tracker) {
         boolean run = true;
         while (run) {
@@ -16,7 +10,7 @@ public class StartUI {
             if (select == 0) {
                 createItem(input, tracker);
             } else if (select == 1) {
-                showAllItems(tracker);
+                showAllItems(input, tracker);
             } else if (select == 2) {
                 replaceItem(input, tracker);
             } else if (select == 3) {
@@ -51,7 +45,7 @@ public class StartUI {
         System.out.println("Добавленная заявка: " + item);
     }
 
-    public static void showAllItems(Tracker tracker) {
+    public static void showAllItems(Input input, Tracker tracker) {
         System.out.println("=== Show all items ====");
         Item[] items = tracker.findAll();
         if (items.length > 0) {
@@ -107,6 +101,12 @@ public class StartUI {
         } else {
             System.out.println("Заявки с именем: " + name + " не найдены.");
         }
+    }
+
+    public static void main(String[] args) {
+        Input input = new ConsoleInput();
+        Tracker tracker = new Tracker();
+        new StartUI().init(input, tracker);
     }
 
 }
