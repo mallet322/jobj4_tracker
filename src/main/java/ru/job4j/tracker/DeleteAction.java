@@ -8,10 +8,6 @@ public class DeleteAction implements UserAction {
         this.out = out;
     }
 
-    public Output getOut() {
-        return out;
-    }
-
     @Override
     public String name() {
         return "Delete item";

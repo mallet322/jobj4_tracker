@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -56,8 +57,18 @@ public class StartUITest {
         Input input = new StubInput(answers);
         UserAction[] actions = {new FindAllAction(out), new ExitAction(out)};
         new StartUI(out).init(input, tracker, actions);
-        Item[] expectedArray = {item};
-        Assert.assertArrayEquals(expectedArray, tracker.findAll());
+        String expected =
+                "Menu." + System.lineSeparator()
+                + "0. Show all items"+ System.lineSeparator()
+                + "1. Exit" + System.lineSeparator()
+                + "=== Show all items ===" + System.lineSeparator()
+                + item + System.lineSeparator()
+                + "Menu." + System.lineSeparator()
+                + "0. Show all items" + System.lineSeparator()
+                + "1. Exit" + System.lineSeparator()
+                + "=== Exit ===" + System.lineSeparator();
+        Assert.assertThat(out.toString(), Matchers.is(expected));
+
     }
 
     @Test
@@ -99,7 +110,10 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         UserAction[] actions = {new ExitAction(out)};
         new StartUI(out).init(input, tracker, actions);
-        String expected = "Menu." + System.lineSeparator() + "0. Exit" + System.lineSeparator();
+        String expected =
+                "Menu." + System.lineSeparator() +
+                "0. Exit" + System.lineSeparator() +
+                "=== Exit ===" + System.lineSeparator();
         Assert.assertEquals(expected, out.toString());
     }
 

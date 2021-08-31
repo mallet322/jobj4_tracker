@@ -8,10 +8,6 @@ public class FindByNameAction implements UserAction {
         this.out = out;
     }
 
-    public Output getOut() {
-        return out;
-    }
-
     @Override
     public String name() {
         return "Find items by name";
