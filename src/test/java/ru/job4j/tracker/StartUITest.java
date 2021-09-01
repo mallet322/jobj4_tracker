@@ -81,7 +81,17 @@ public class StartUITest {
         Input input = new StubInput(answers);
         UserAction[] actions = {new FindByIdAction(out), new ExitAction(out)};
         new StartUI(out).init(input, tracker, actions);
-        Assert.assertEquals(item, tracker.findById(item.getId()));
+        String expected =
+                "Menu." + System.lineSeparator()
+                + "0. Find item by id"+ System.lineSeparator()
+                + "1. Exit" + System.lineSeparator()
+                + "=== Find item by id ===" + System.lineSeparator()
+                + item + System.lineSeparator()
+                + "Menu." + System.lineSeparator()
+                + "0. Find item by id" + System.lineSeparator()
+                + "1. Exit" + System.lineSeparator()
+                + "=== Exit ===" + System.lineSeparator();
+        Assert.assertThat(out.toString(), Matchers.is(expected));
     }
 
     @Test
@@ -98,8 +108,19 @@ public class StartUITest {
         Input input = new StubInput(answers);
         UserAction[] actions = {new FindByNameAction(out), new ExitAction(out)};
         new StartUI(out).init(input, tracker, actions);
-        Item[] expectedArray = {item0, item1, item2};
-        Assert.assertArrayEquals(expectedArray, tracker.findByName(item0.getName()));
+        String expected =
+                "Menu." + System.lineSeparator()
+                + "0. Find items by name"+ System.lineSeparator()
+                + "1. Exit" + System.lineSeparator()
+                + "=== Find items by name ===" + System.lineSeparator()
+                + item0 + System.lineSeparator()
+                + item1 + System.lineSeparator()
+                + item2 + System.lineSeparator()
+                + "Menu." + System.lineSeparator()
+                + "0. Find items by name" + System.lineSeparator()
+                + "1. Exit" + System.lineSeparator()
+                + "=== Exit ===" + System.lineSeparator();
+        Assert.assertThat(out.toString(), Matchers.is(expected));
     }
 
     @Test
