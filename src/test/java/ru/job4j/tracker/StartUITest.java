@@ -57,17 +57,18 @@ public class StartUITest {
         Input input = new StubInput(answers);
         UserAction[] actions = {new FindAllAction(out), new ExitAction(out)};
         new StartUI(out).init(input, tracker, actions);
-        String expected =
-                "Menu." + System.lineSeparator()
-                + "0. Show all items"+ System.lineSeparator()
-                + "1. Exit" + System.lineSeparator()
-                + "=== Show all items ===" + System.lineSeparator()
-                + item + System.lineSeparator()
-                + "Menu." + System.lineSeparator()
-                + "0. Show all items" + System.lineSeparator()
-                + "1. Exit" + System.lineSeparator()
-                + "=== Exit ===" + System.lineSeparator();
-        Assert.assertThat(out.toString(), Matchers.is(expected));
+        String ln = System.lineSeparator();
+        String actual =
+                "Menu." + ln
+                + "0. Show all items"+ ln
+                + "1. Exit" + ln
+                + "=== Show all items ===" + ln
+                + item + ln
+                + "Menu." + ln
+                + "0. Show all items" + ln
+                + "1. Exit" + ln
+                + "=== Exit ===" + ln;
+        Assert.assertThat(out.toString(), Matchers.is(actual));
 
     }
 
@@ -81,17 +82,18 @@ public class StartUITest {
         Input input = new StubInput(answers);
         UserAction[] actions = {new FindByIdAction(out), new ExitAction(out)};
         new StartUI(out).init(input, tracker, actions);
-        String expected =
-                "Menu." + System.lineSeparator()
-                + "0. Find item by id"+ System.lineSeparator()
-                + "1. Exit" + System.lineSeparator()
-                + "=== Find item by id ===" + System.lineSeparator()
-                + item + System.lineSeparator()
-                + "Menu." + System.lineSeparator()
-                + "0. Find item by id" + System.lineSeparator()
-                + "1. Exit" + System.lineSeparator()
-                + "=== Exit ===" + System.lineSeparator();
-        Assert.assertThat(out.toString(), Matchers.is(expected));
+        String ln = System.lineSeparator();
+        String actual =
+                "Menu." + ln
+                + "0. Find item by id"+ ln
+                + "1. Exit" + ln
+                + "=== Find item by id ===" + ln
+                + item + ln
+                + "Menu." + ln
+                + "0. Find item by id" + ln
+                + "1. Exit" + ln
+                + "=== Exit ===" + ln;
+        Assert.assertThat(out.toString(), Matchers.is(actual));
     }
 
     @Test
@@ -108,19 +110,20 @@ public class StartUITest {
         Input input = new StubInput(answers);
         UserAction[] actions = {new FindByNameAction(out), new ExitAction(out)};
         new StartUI(out).init(input, tracker, actions);
-        String expected =
-                "Menu." + System.lineSeparator()
-                + "0. Find items by name"+ System.lineSeparator()
-                + "1. Exit" + System.lineSeparator()
-                + "=== Find items by name ===" + System.lineSeparator()
-                + item0 + System.lineSeparator()
-                + item1 + System.lineSeparator()
-                + item2 + System.lineSeparator()
-                + "Menu." + System.lineSeparator()
-                + "0. Find items by name" + System.lineSeparator()
-                + "1. Exit" + System.lineSeparator()
-                + "=== Exit ===" + System.lineSeparator();
-        Assert.assertThat(out.toString(), Matchers.is(expected));
+        String ln = System.lineSeparator();
+        String actual =
+                "Menu." + ln
+                + "0. Find items by name"+ ln
+                + "1. Exit" + ln
+                + "=== Find items by name ===" + ln
+                + item0 + ln
+                + item1 + ln
+                + item2 + ln
+                + "Menu." + ln
+                + "0. Find items by name" + ln
+                + "1. Exit" + ln
+                + "=== Exit ===" + ln;
+        Assert.assertThat(out.toString(), Matchers.is(actual));
     }
 
     @Test
@@ -131,11 +134,31 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         UserAction[] actions = {new ExitAction(out)};
         new StartUI(out).init(input, tracker, actions);
-        String expected =
-                "Menu." + System.lineSeparator() +
-                "0. Exit" + System.lineSeparator() +
-                "=== Exit ===" + System.lineSeparator();
-        Assert.assertThat(out.toString(), Matchers.is(expected));
+        String ln = System.lineSeparator();
+        String actual =
+                "Menu." + ln +
+                "0. Exit" + ln +
+                "=== Exit ===" + ln;
+        Assert.assertThat(out.toString(), Matchers.is(actual));
+    }
+
+    @Test
+    public void whenInvalidExit() {
+        Output out = new StubOutput();
+        String[] answers = {"1", "0"};
+        Input input = new StubInput(answers);
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {new ExitAction(out)};
+        new StartUI(out).init(input, tracker, actions);
+        String ln = System.lineSeparator();
+        String actual =
+                "Menu." + ln +
+                "0. Exit" + ln +
+                "Wrong input, you can select: 0 .. 0" + ln +
+                "Menu." + ln +
+                "0. Exit" + ln +
+                "=== Exit ===" + ln;
+        Assert.assertThat(out.toString(), Matchers.is(actual));
     }
 
 }
