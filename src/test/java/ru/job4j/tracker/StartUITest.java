@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.List;
+
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
@@ -12,9 +14,9 @@ public class StartUITest {
         String[] answers = {"0", "Some Item", "1"};
         Input input = new StubInput(answers);
         Tracker tracker = new Tracker();
-        UserAction[] actions = {new CreateAction(out), new ExitAction(out)};
+        List<UserAction> actions = List.of(new CreateAction(out), new ExitAction(out));
         new StartUI(out).init(input, tracker, actions);
-        Item actual = tracker.findAll()[0];
+        Item actual = tracker.findAll().get(0);
         Item expected = new Item("Some Item");
         Assert.assertEquals(expected.getName(), actual.getName());
     }
@@ -27,10 +29,10 @@ public class StartUITest {
         tracker.add(item);
         String[] answers = {"0", String.valueOf(item.getId()), "Replaced Item", "1"};
         Input input = new StubInput(answers);
-        UserAction[] actions = {new ReplaceAction(out), new ExitAction(out)};
+        List<UserAction> actions = List.of(new ReplaceAction(out), new ExitAction(out));
         new StartUI(out).init(input, tracker, actions);
         Item expected = new Item("Replaced Item");
-        Item actual = tracker.findAll()[0];
+        Item actual = tracker.findAll().get(0);
         Assert.assertEquals(expected.getName(), actual.getName());
     }
 
@@ -42,7 +44,7 @@ public class StartUITest {
         tracker.add(item);
         String[] answers = {"0", String.valueOf(item.getId()), "1"};
         Input input = new StubInput(answers);
-        UserAction[] actions = {new DeleteAction(out), new ExitAction(out)};
+        List<UserAction> actions = List.of(new DeleteAction(out), new ExitAction(out));
         new StartUI(out).init(input, tracker, actions);
         Assert.assertNull(tracker.findById(item.getId()));
     }
@@ -55,7 +57,7 @@ public class StartUITest {
         tracker.add(item);
         String[] answers = {"0", "1"};
         Input input = new StubInput(answers);
-        UserAction[] actions = {new FindAllAction(out), new ExitAction(out)};
+        List<UserAction> actions = List.of(new FindAllAction(out), new ExitAction(out));
         new StartUI(out).init(input, tracker, actions);
         String ln = System.lineSeparator();
         String actual =
@@ -80,7 +82,7 @@ public class StartUITest {
         tracker.add(item);
         String[] answers = {"0", String.valueOf(item.getId()), "1"};
         Input input = new StubInput(answers);
-        UserAction[] actions = {new FindByIdAction(out), new ExitAction(out)};
+        List<UserAction> actions = List.of(new FindByIdAction(out), new ExitAction(out));
         new StartUI(out).init(input, tracker, actions);
         String ln = System.lineSeparator();
         String actual =
@@ -108,7 +110,7 @@ public class StartUITest {
         tracker.add(item2);
         String[] answers = {"0", String.valueOf(item0.getName()), "1"};
         Input input = new StubInput(answers);
-        UserAction[] actions = {new FindByNameAction(out), new ExitAction(out)};
+        List<UserAction> actions = List.of(new FindByNameAction(out), new ExitAction(out));
         new StartUI(out).init(input, tracker, actions);
         String ln = System.lineSeparator();
         String actual =
@@ -132,7 +134,7 @@ public class StartUITest {
         String[] answers = {"0"};
         Input input = new StubInput(answers);
         Tracker tracker = new Tracker();
-        UserAction[] actions = {new ExitAction(out)};
+        List<UserAction> actions = List.of(new ExitAction(out));
         new StartUI(out).init(input, tracker, actions);
         String ln = System.lineSeparator();
         String actual =
@@ -148,7 +150,7 @@ public class StartUITest {
         String[] answers = {"1", "0"};
         Input input = new StubInput(answers);
         Tracker tracker = new Tracker();
-        UserAction[] actions = {new ExitAction(out)};
+        List<UserAction> actions = List.of(new ExitAction(out));
         new StartUI(out).init(input, tracker, actions);
         String ln = System.lineSeparator();
         String actual =
