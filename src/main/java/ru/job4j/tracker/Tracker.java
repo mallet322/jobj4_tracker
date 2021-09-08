@@ -31,7 +31,7 @@ public class Tracker {
     }
 
     public List<Item> findAll() {
-        return items;
+        return List.copyOf(items);
     }
 
     public boolean replace(int id, Item item) {
