@@ -30,4 +30,14 @@ public class OrderConvertTest {
         Assert.assertThat(map.get("89qw"), Matchers.is(new Order("89qw", "Dress2")));
     }
 
+    @Test
+    public void whenDuplicateOrders() {
+        List<Order> orders = new ArrayList<>();
+        orders.add(new Order("3sfe", "Dress"));
+        orders.add(new Order("3sfe", "Dress"));
+        HashMap<String, Order> map = OrderConvert.process(orders);
+        Assert.assertEquals(1, map.size());
+        Assert.assertThat(map.get("3sfe"), Matchers.is(new Order("3sfe", "Dress")));
+    }
+
 }
