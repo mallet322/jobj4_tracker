@@ -1,7 +1,6 @@
 package ru.job4j.collection;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class UsageMap {
 
@@ -10,8 +9,9 @@ public class UsageMap {
         userMap.put("mscott@dundermifflin.com", "Michael Scott");
         userMap.put("dschrute@dundermifflin.com", "Dwight Schrute");
         userMap.put("jhalpert@dundermifflin.com", "Jim Halpert");
-        for (Map.Entry<String, String> entry : userMap.entrySet()) {
-            System.out.println("email: " + entry.getKey() + ", user: " + entry.getValue());
+        for (String key : userMap.keySet()) {
+            String value = userMap.get(key);
+            System.out.println("Email " + key + ", user " + value);
         }
     }
 
