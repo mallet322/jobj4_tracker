@@ -28,5 +28,4 @@ public class NotifyAccountTest {
         Assert.assertThat(NotifyAccount.sent(accounts), Matchers.is(expect));
     }
 
-
 }

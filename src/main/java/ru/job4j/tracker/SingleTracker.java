@@ -4,11 +4,13 @@ import java.util.List;
 
 public final class SingleTracker {
 
-    private final Tracker tracker = new Tracker();
-
     private static SingleTracker instance = null;
 
-    private SingleTracker() {}
+    private final Tracker tracker = new Tracker();
+
+    private SingleTracker() {
+
+    }
 
     public static SingleTracker getInstance() {
         if (instance == null) {

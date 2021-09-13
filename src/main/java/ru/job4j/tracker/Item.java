@@ -6,7 +6,8 @@ import java.util.Objects;
 
 public class Item {
 
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
+    private static final DateTimeFormatter FORMATTER =
+            DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
 
     private int id;
 
@@ -65,7 +66,10 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" + "id= " + id + ", name= " + name + ", created= " + created.format(FORMATTER) + "}";
+        return "Item{".concat("id= ").concat(String.valueOf(id))
+                      .concat(", name= ").concat(name)
+                      .concat(", created= ").concat(created.format(FORMATTER))
+                      .concat("}");
     }
 
 }

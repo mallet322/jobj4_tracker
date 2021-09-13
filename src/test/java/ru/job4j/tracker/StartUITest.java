@@ -61,17 +61,16 @@ public class StartUITest {
         new StartUI(out).init(input, tracker, actions);
         String ln = System.lineSeparator();
         String actual =
-                "Menu." + ln
-                + "0. Show all items"+ ln
-                + "1. Exit" + ln
-                + "=== Show all items ===" + ln
-                + item + ln
-                + "Menu." + ln
-                + "0. Show all items" + ln
-                + "1. Exit" + ln
-                + "=== Exit ===" + ln;
+                "Menu.".concat(ln)
+                       .concat("0. Show all items").concat(ln)
+                       .concat("1. Exit").concat(ln)
+                       .concat("=== Show all items ===") .concat(ln)
+                       .concat(item.toString()).concat(ln)
+                       .concat("Menu.").concat(ln)
+                       .concat("0. Show all items").concat(ln)
+                       .concat("1. Exit").concat(ln)
+                       .concat("=== Exit ===").concat(ln);
         Assert.assertThat(out.toString(), Matchers.is(actual));
-
     }
 
     @Test
@@ -86,15 +85,15 @@ public class StartUITest {
         new StartUI(out).init(input, tracker, actions);
         String ln = System.lineSeparator();
         String actual =
-                "Menu." + ln
-                + "0. Find item by id"+ ln
-                + "1. Exit" + ln
-                + "=== Find item by id ===" + ln
-                + item + ln
-                + "Menu." + ln
-                + "0. Find item by id" + ln
-                + "1. Exit" + ln
-                + "=== Exit ===" + ln;
+                "Menu.".concat(ln)
+                       .concat("0. Find item by id").concat(ln)
+                       .concat("1. Exit").concat(ln)
+                       .concat("=== Find item by id ===").concat(ln)
+                       .concat(item.toString()).concat(ln)
+                       .concat("Menu.").concat(ln)
+                       .concat("0. Find item by id").concat(ln)
+                       .concat("1. Exit").concat(ln)
+                       .concat("=== Exit ===").concat(ln);
         Assert.assertThat(out.toString(), Matchers.is(actual));
     }
 
@@ -114,17 +113,17 @@ public class StartUITest {
         new StartUI(out).init(input, tracker, actions);
         String ln = System.lineSeparator();
         String actual =
-                "Menu." + ln
-                + "0. Find items by name"+ ln
-                + "1. Exit" + ln
-                + "=== Find items by name ===" + ln
-                + item0 + ln
-                + item1 + ln
-                + item2 + ln
-                + "Menu." + ln
-                + "0. Find items by name" + ln
-                + "1. Exit" + ln
-                + "=== Exit ===" + ln;
+                "Menu.".concat(ln)
+                       .concat("0. Find items by name").concat(ln)
+                       .concat("1. Exit").concat(ln)
+                       .concat("=== Find items by name ===").concat(ln)
+                       .concat(item0.toString()).concat(ln)
+                       .concat(item1.toString()).concat(ln)
+                       .concat(item2.toString()).concat(ln)
+                       .concat("Menu.").concat(ln)
+                       .concat("0. Find items by name").concat(ln)
+                       .concat("1. Exit").concat(ln)
+                       .concat("=== Exit ===").concat(ln);
         Assert.assertThat(out.toString(), Matchers.is(actual));
     }
 
@@ -137,10 +136,9 @@ public class StartUITest {
         List<UserAction> actions = List.of(new ExitAction(out));
         new StartUI(out).init(input, tracker, actions);
         String ln = System.lineSeparator();
-        String actual =
-                "Menu." + ln +
-                "0. Exit" + ln +
-                "=== Exit ===" + ln;
+        String actual = "Menu.".concat(ln)
+                               .concat("0. Exit").concat(ln)
+                               .concat("=== Exit ===").concat(ln);
         Assert.assertThat(out.toString(), Matchers.is(actual));
     }
 
@@ -153,13 +151,12 @@ public class StartUITest {
         List<UserAction> actions = List.of(new ExitAction(out));
         new StartUI(out).init(input, tracker, actions);
         String ln = System.lineSeparator();
-        String actual =
-                "Menu." + ln +
-                "0. Exit" + ln +
-                "Wrong input, you can select: 0 .. 0" + ln +
-                "Menu." + ln +
-                "0. Exit" + ln +
-                "=== Exit ===" + ln;
+        String actual = "Menu.".concat(ln)
+                               .concat("0. Exit").concat(ln)
+                               .concat("Wrong input, you can select: 0 .. 0").concat(ln)
+                               .concat("Menu.").concat(ln)
+                               .concat("0. Exit").concat(ln)
+                               .concat("=== Exit ===").concat(ln);
         Assert.assertThat(out.toString(), Matchers.is(actual));
     }
 

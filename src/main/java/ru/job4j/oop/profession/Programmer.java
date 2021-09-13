@@ -8,7 +8,11 @@ public class Programmer extends Engineer {
 
     private String language;
 
-    public Programmer(String name, String surname, String education, String birthday, String company) {
+    public Programmer(String name,
+                      String surname,
+                      String education,
+                      String birthday,
+                      String company) {
         super(name, surname, education, birthday, company);
     }
 

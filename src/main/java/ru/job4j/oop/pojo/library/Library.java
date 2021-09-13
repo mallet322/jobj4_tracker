@@ -10,17 +10,20 @@ public class Library {
         books[3] = new Book("Spring in action", 350);
         System.out.println("Show books info:");
         for (Book book : books) {
-            System.out.println("Book name: " + book.getName() + ", Pages count: " + book.getPageCount());
+            System.out.println("Book name: " + book.getName()
+                                       + ", Pages count: " + book.getPageCount());
         }
         swap(books, 0, 3);
         System.out.println(System.lineSeparator() + "Show books info after swap elements:");
         for (Book book : books) {
-            System.out.println("Book name: " + book.getName() + ", Pages count: " + book.getPageCount());
+            System.out.println("Book name: " + book.getName()
+                                       + ", Pages count: " + book.getPageCount());
         }
         System.out.println(System.lineSeparator() + "Show books with \"Clean code name\"");
         for (Book book : books) {
             if ("Clean code".equals(book.getName())) {
-                System.out.println("Book name: " + book.getName() + ", Pages count: " + book.getPageCount());
+                System.out.println("Book name: " + book.getName()
+                                           + ", Pages count: " + book.getPageCount());
             }
         }
     }

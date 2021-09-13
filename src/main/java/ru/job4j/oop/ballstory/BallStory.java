@@ -1,4 +1,4 @@
-package ru.job4j.oop.ball_story;
+package ru.job4j.oop.ballstory;
 
 public class BallStory {
 

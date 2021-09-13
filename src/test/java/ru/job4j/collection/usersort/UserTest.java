@@ -1,4 +1,4 @@
-package ru.job4j.collection.user_sort;
+package ru.job4j.collection.usersort;
 
 import java.util.Iterator;
 import java.util.Set;

@@ -36,5 +36,4 @@ public class Doctor extends Profession {
         pacient.setHealth(true);
     }
 
-
 }

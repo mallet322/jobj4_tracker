@@ -1,8 +1,8 @@
 package ru.job4j.oop.profession;
 
 public class Product {
-    String name;
-    String category;
+    private String name;
+    private String category;
 
     public Product(String name, String category) {
         this.name = name;

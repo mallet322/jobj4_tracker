@@ -2,7 +2,7 @@ package ru.job4j.oop.pojo;
 
 public class Student {
 
-    private String FIO;
+    private String fio;
 
     private String group;
 
@@ -11,18 +11,18 @@ public class Student {
     public Student() {
     }
 
-    public Student(String FIO, String group, String admissionDate) {
-        this.FIO = FIO;
+    public Student(String fio, String group, String admissionDate) {
+        this.fio = fio;
         this.group = group;
         this.admissionDate = admissionDate;
     }
 
-    public String getFIO() {
-        return FIO;
+    public String getFio() {
+        return fio;
     }
 
-    public void setFIO(String FIO) {
-        this.FIO = FIO;
+    public void setFio(String fio) {
+        this.fio = fio;
     }
 
     public String getGroup() {
@@ -43,10 +43,11 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student: " + System.lineSeparator() +
-                "FIO: " + FIO + System.lineSeparator() +
-                "Group: " + group + System.lineSeparator() +
-                "AdmissionDate: " + admissionDate;
+        String ln = System.lineSeparator();
+        return "Student: ".concat(ln)
+                          .concat("FIO: ").concat(fio).concat(ln)
+                          .concat("Group: ").concat(group).concat(ln)
+                          .concat("AdmissionDate: ").concat(admissionDate);
     }
 
 }

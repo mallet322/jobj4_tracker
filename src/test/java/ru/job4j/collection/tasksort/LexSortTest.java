@@ -1,4 +1,4 @@
-package ru.job4j.collection.task_sort;
+package ru.job4j.collection.tasksort;
 
 import java.util.Arrays;
 

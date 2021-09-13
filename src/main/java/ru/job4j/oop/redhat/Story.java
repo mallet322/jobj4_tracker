@@ -1,4 +1,4 @@
-package ru.job4j.oop.red_hat;
+package ru.job4j.oop.redhat;
 
 public class Story {
 

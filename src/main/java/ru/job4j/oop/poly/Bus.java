@@ -14,8 +14,8 @@ public class Bus implements Transport {
 
     @Override
     public int fillUp(int fuelCount) {
-        int AI95Price = Math.round(50.49f);
-        return AI95Price * fuelCount;
+        int fuelPrice = Math.round(50.49f);
+        return fuelPrice * fuelCount;
     }
 
 }
