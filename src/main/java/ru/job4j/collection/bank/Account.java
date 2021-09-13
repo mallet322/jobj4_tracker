@@ -2,6 +2,9 @@ package ru.job4j.collection.bank;
 
 import java.util.Objects;
 
+/**
+ * Класс, описывающий объект банковский аккаунт.
+ */
 public class Account {
 
     private String requisite;
