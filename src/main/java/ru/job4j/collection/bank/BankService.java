@@ -18,8 +18,8 @@ public class BankService {
     private final List<Account> accounts = new ArrayList<>();
 
     /**
-     * Метод, позволяющий добавить пользователя в коллекцию. По умолчанию с пользователем добавляется пустая коллекция
-     * типа ArrayList.
+     * Метод, позволяющий добавить пользователя в коллекцию.
+     * По умолчанию с пользователем добавляется пустая коллекция типа ArrayList.
      *
      * @param user
      *         Пользователь.
@@ -103,6 +103,8 @@ public class BankService {
      *         Реквизиты пользователя, которому начисляются средства.
      * @param amount
      *         Сумма перевода денежных средств.
+     *
+     * @return Статус выполненного перевода.
      */
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite, double amount) {
