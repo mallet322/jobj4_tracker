@@ -11,7 +11,8 @@ public class CustomComparator {
     }
 
     public static void stringLengthDescComparator(List<String> list) {
-        Comparator<String> cmpDescSize = (s, anotherString) -> Integer.compare(anotherString.length(), s.length());
+        Comparator<String> cmpDescSize =
+                (s, anotherString) -> Integer.compare(anotherString.length(), s.length());
         list.sort(cmpDescSize);
     }
 
