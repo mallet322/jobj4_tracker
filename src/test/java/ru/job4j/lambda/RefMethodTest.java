@@ -20,7 +20,7 @@ public class RefMethodTest {
         System.setIn(in);
         List<String> names = Arrays.asList("Ivan", "Petr Arsentev");
         names.forEach(RefMethod::cutOut);
-        Assert.assertThat(out.toString(), Matchers.is("Ivan\r\nPetr Arsen..\r\n"));
+        Assert.assertThat(out.toString(), Matchers.is("Ivan\r\nPetr Arsen..\n"));
     }
 
 }
