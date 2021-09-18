@@ -6,7 +6,7 @@ import java.util.List;
 public class CustomComparator {
 
     public static void stringComparator(List<String> list) {
-        Comparator<String> cmpText = (s, anotherString) -> s.compareTo(anotherString);
+        Comparator<String> cmpText = String::compareTo;
         list.sort(cmpText);
     }
 
