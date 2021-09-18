@@ -13,7 +13,7 @@ public class ArrayListFilter {
 
     public static List<Integer> filterNegativeNumbers(List<Integer> list) {
         return list.stream()
-                   .filter(num -> num >= 0)
+                   .filter(num -> num > 0)
                    .collect(Collectors.toList());
     }
 
