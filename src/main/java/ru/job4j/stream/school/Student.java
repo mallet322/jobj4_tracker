@@ -38,4 +38,12 @@ public class Student {
         return Objects.hash(score, surname);
     }
 
+    @Override
+    public String toString() {
+        return "Student{"
+                + "score=" + score
+                + ", surname='" + surname + '\''
+                +  '}';
+    }
+
 }
