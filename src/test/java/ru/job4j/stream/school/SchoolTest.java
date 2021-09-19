@@ -79,11 +79,10 @@ public class SchoolTest {
                 new Student(50, "Surname5")
         );
         School sc = new School();
-        Map<String, Student> map = sc.collectToMap(students);
-        students.forEach(student -> {
-            Assert.assertTrue(map.containsKey(student.getSurname()));
-            Assert.assertTrue(map.containsValue(student));
-        });
+        Map<String, Student> actual = sc.collectToMap(students);
+        Assert.assertNotNull(actual.values());
+        Assert.assertEquals(5, actual.size());
+        Assert.assertEquals(students.get(5), actual.get(students.get(5).getSurname()));
     }
 
 }
