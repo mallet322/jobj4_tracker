@@ -19,7 +19,7 @@ public class BankService {
 
     /**
      * Метод, позволяющий добавить пользователя в коллекцию.
-     * По умолчанию с пользователем добавляется пустая коллекция ArrayList.
+     * По умолчанию с пользователем добавляется пустая коллекция типа ArrayList.
      *
      * @param user
      *         Пользователь.
@@ -55,14 +55,11 @@ public class BankService {
      * @return Найденный пользователь.
      */
     public User findByPassport(String passport) {
-        User result = null;
-        for (User key : users.keySet()) {
-            if (passport.equals(key.getPassport())) {
-                result = key;
-                break;
-            }
-        }
-        return result;
+        return users.keySet()
+                    .stream()
+                    .filter(user -> passport.equals(user.getPassport()))
+                    .findFirst()
+                    .orElse(null);
     }
 
     /**
@@ -76,18 +73,15 @@ public class BankService {
      * @return Найденный пользователь.
      */
     public Account findByRequisite(String passport, String requisite) {
-        Account result = null;
         User user = findByPassport(passport);
         if (user != null) {
-            List<Account> accounts = users.get(user);
-            for (Account account : accounts) {
-                if (requisite.equals(account.getRequisite())) {
-                    result = account;
-                    break;
-                }
-            }
+            return users.get(user)
+                        .stream()
+                        .filter(account -> requisite.equals(account.getRequisite()))
+                        .findFirst()
+                        .orElse(null);
         }
-        return result;
+        return null;
     }
 
     /**
