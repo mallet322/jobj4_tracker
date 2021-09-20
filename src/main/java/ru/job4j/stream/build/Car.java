@@ -11,14 +11,6 @@ public class Car {
     public Car() {
     }
 
-    public Car(String brand, BodyType bodyType, Double engine, Color color, Integer doorCount) {
-        this.brand = brand;
-        this.bodyType = bodyType;
-        this.engine = engine;
-        this.color = color;
-        this.doorCount = doorCount;
-    }
-
     @Override
     public String toString() {
         return "Car{"
