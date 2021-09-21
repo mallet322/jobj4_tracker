@@ -8,9 +8,6 @@ public class Car {
     private Color color;
     private Integer doorCount;
 
-    public Car() {
-    }
-
     @Override
     public String toString() {
         return "Car{"
