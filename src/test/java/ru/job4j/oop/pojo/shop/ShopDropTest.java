@@ -1,10 +1,9 @@
 package ru.job4j.oop.pojo.shop;
 
-import org.junit.Test;
-
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
+import org.junit.Test;
 
 public class ShopDropTest {
 

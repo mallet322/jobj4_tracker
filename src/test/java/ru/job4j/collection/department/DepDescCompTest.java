@@ -1,6 +1,6 @@
 package ru.job4j.collection.department;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hamcrest.Matchers;
@@ -29,7 +29,7 @@ public class DepDescCompTest {
 
     @Test
     public void sortDepartmentsDesc() {
-        List<String> expected = Arrays.asList(
+        List<String> expected = List.of(
                 "K2",
                 "K2/SK1",
                 "K2/SK1/SSK1",
@@ -41,7 +41,7 @@ public class DepDescCompTest {
                 "K1/SK1/SSK1",
                 "K1/SK1/SSK2",
                 "K1/SK2");
-        List<String> actual = Arrays.asList(
+        List<String> actual = new ArrayList<>(List.of(
                 "K2/SK2/SSK1",
                 "K2/SK2",
                 "K2/SK1/SSK2",
@@ -53,7 +53,7 @@ public class DepDescCompTest {
                 "K1/SK1/SSK1",
                 "K1/SK1/SSK2",
                 "K1"
-        );
+        ));
         actual.sort(new DepDescComp());
         Assert.assertThat(actual, Matchers.is(expected));
     }

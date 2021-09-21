@@ -3,7 +3,6 @@ package ru.job4j.tracker;
 import java.util.List;
 import java.util.Random;
 
-import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.Matchers.is;
 import org.junit.Assert;
 import static org.junit.Assert.assertThat;
