@@ -98,7 +98,9 @@ public class CollegeTest {
                 )
         );
         College college = new College(students);
-        Assert.assertThat(college.findBySubjectName("000002", "Sociology").get().getScore(), Matchers.is(65));
+        college.findBySubjectName("000002", "Sociology")
+               .ifPresent(subject -> Assert.assertThat(subject.getScore(), Matchers.is(65)));
+
     }
 
 }
