@@ -44,7 +44,8 @@ public class CollegeTest {
         );
         College college = new College(students);
         college.findByAccount("000001")
-               .ifPresent(student -> Assert.assertThat(student.getGroup(), Matchers.is("201-18-15")));
+               .ifPresent(student -> Assert.assertThat(student.getGroup(),
+                                                       Matchers.is("201-18-15")));
     }
 
     @Test
@@ -62,7 +63,8 @@ public class CollegeTest {
                 )
         );
         College college = new College(students);
-        Assert.assertThat(college.findBySubjectName("000010", "Sociology"), Matchers.is(Optional.empty()));
+        Assert.assertThat(college.findBySubjectName("000010", "Sociology"),
+                          Matchers.is(Optional.empty()));
     }
 
     @Test
@@ -80,7 +82,8 @@ public class CollegeTest {
                 )
         );
         College college = new College(students);
-        Assert.assertThat(college.findBySubjectName("000001", "Sociology"), Matchers.is(Optional.empty()));
+        Assert.assertThat(college.findBySubjectName("000001", "Sociology"),
+                          Matchers.is(Optional.empty()));
     }
 
     @Test
