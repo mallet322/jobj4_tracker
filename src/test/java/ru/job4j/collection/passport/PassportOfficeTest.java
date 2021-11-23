@@ -18,10 +18,10 @@ public class PassportOfficeTest {
     public void addDuplicate() {
         Citizen citizen0 = new Citizen("2f44a", "Petr Arsentev");
         Citizen citizen1 = new Citizen("2f44a", "Petr Arsentev");
-        // Объекты эквивалентны.
         Assert.assertEquals(citizen0.hashCode(), citizen1.hashCode());
         PassportOffice office = new PassportOffice();
         office.add(citizen0);
         Assert.assertFalse(office.add(citizen1));
     }
+
 }
