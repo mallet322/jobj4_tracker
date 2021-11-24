@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -14,6 +15,13 @@ import java.util.Properties;
 public class SqlTracker implements Store {
 
     private Connection connection;
+
+    public SqlTracker() {
+    }
+
+    public SqlTracker(Connection connection) {
+        this.connection = connection;
+    }
 
     public void init() {
         try (InputStream in = SqlTracker.class.getClassLoader()
@@ -26,7 +34,6 @@ public class SqlTracker implements Store {
                     config.getProperty("username"),
                     config.getProperty("password")
             );
-            createTable(connection);
         } catch (Exception e) {
             throw new IllegalStateException(e);
         }
@@ -36,7 +43,7 @@ public class SqlTracker implements Store {
     public Item add(Item item) {
         try (PreparedStatement ps =
                      connection.prepareStatement(
-                             "insert into item(name, created) values(?, ?)",
+                             "insert into items(name, created) values(?, ?)",
                              Statement.RETURN_GENERATED_KEYS)
         ) {
             ps.setString(1, item.getName());
@@ -57,7 +64,7 @@ public class SqlTracker implements Store {
     public boolean replace(int id, Item item) {
         boolean result = false;
         try (PreparedStatement ps = connection.prepareStatement(
-                "update item set name = ?, created = ? where id = ?")) {
+                "update items set name = ?, created = ? where id = ?")) {
             ps.setString(1, item.getName());
             ps.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
             ps.setInt(3, id);
@@ -72,7 +79,7 @@ public class SqlTracker implements Store {
     public boolean delete(int id) {
         boolean result = false;
         try (PreparedStatement statement =
-                     connection.prepareStatement("delete from item where id = ?")) {
+                     connection.prepareStatement("delete from items where id = ?")) {
             statement.setInt(1, id);
             result = statement.executeUpdate() == 1;
         } catch (Exception e) {
@@ -84,14 +91,10 @@ public class SqlTracker implements Store {
     @Override
     public List<Item> findAll() {
         var items = new ArrayList<Item>();
-        try (PreparedStatement statement = connection.prepareStatement("select * from item")) {
+        try (PreparedStatement statement = connection.prepareStatement("select * from items")) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    items.add(
-                            new Item(
-                                    resultSet.getInt("id"),
-                                    resultSet.getString("name"))
-                    );
+                    items.add(getItem(resultSet));
                 }
             }
         } catch (Exception e) {
@@ -104,15 +107,11 @@ public class SqlTracker implements Store {
     public List<Item> findByName(String key) {
         var items = new ArrayList<Item>();
         try (PreparedStatement statement =
-                     connection.prepareStatement("select * from item where name = ?")) {
+                     connection.prepareStatement("select * from items where name = ?")) {
             statement.setString(1, key);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    items.add(
-                            new Item(
-                                    resultSet.getInt("id"),
-                                    resultSet.getString("name"))
-                    );
+                    items.add(getItem(resultSet));
                 }
             }
         } catch (Exception e) {
@@ -124,19 +123,24 @@ public class SqlTracker implements Store {
     @Override
     public Item findById(int id) {
         Item item = null;
-        try (PreparedStatement ps =
-                     connection.prepareStatement("select * from item where id = ?")) {
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                item = new Item(
-                        rs.getInt("id"),
-                        rs.getString("name"));
+        try (PreparedStatement statement =
+                     connection.prepareStatement("select * from items where id = ?")) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                item = getItem(resultSet);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return item;
+    }
+
+    private Item getItem(ResultSet resultSet) throws Exception {
+        return new Item(
+                resultSet.getInt("id"),
+                resultSet.getString("name"),
+                resultSet.getTimestamp("created").toLocalDateTime());
     }
 
     @Override
@@ -150,7 +154,7 @@ public class SqlTracker implements Store {
         try (Statement statement = cn.createStatement()) {
             String ddl =
                     "create table "
-                            + "item(id serial primary key, name varchar(255), created timestamp);";
+                            + "items(id serial primary key, name varchar(255), created timestamp);";
             statement.execute(ddl);
         } catch (Exception e) {
             e.printStackTrace();
