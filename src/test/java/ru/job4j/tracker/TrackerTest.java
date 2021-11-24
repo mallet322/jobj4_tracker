@@ -12,7 +12,7 @@ public class TrackerTest {
 
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item();
         item.setName("test1");
         tracker.add(item);
@@ -22,7 +22,7 @@ public class TrackerTest {
 
     @Test
     public void whenTestFindById() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item bug = new Item("Bug");
         Item item = tracker.add(bug);
         Item result = tracker.findById(item.getId());
@@ -31,7 +31,7 @@ public class TrackerTest {
 
     @Test
     public void whenTestFindAll() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item first = new Item("First");
         Item second = new Item("Second");
         tracker.add(first);
@@ -42,7 +42,7 @@ public class TrackerTest {
 
     @Test
     public void whenTestFindByNameCheckArrayLength() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item first = new Item("First");
         Item second = new Item("Second");
         tracker.add(first);
@@ -56,7 +56,7 @@ public class TrackerTest {
 
     @Test
     public void whenTestFindByNameCheckSecondItemName() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item first = new Item("First");
         Item second = new Item("Second");
         tracker.add(first);
@@ -70,7 +70,7 @@ public class TrackerTest {
 
     @Test
     public void whenReplace() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item itemBeforeUpdate = new Item("Item before update");
         tracker.add(itemBeforeUpdate);
         Item itemAfterUpdate = new Item("Item after update");
@@ -82,7 +82,7 @@ public class TrackerTest {
 
     @Test
     public void whenDelete() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item();
         tracker.add(item);
         Assert.assertTrue(tracker.delete(item.getId()));
@@ -91,7 +91,7 @@ public class TrackerTest {
 
     @Test
     public void whenNotDelete() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item();
         tracker.add(item);
         Random random = new Random();

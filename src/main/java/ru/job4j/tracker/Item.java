@@ -66,10 +66,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{".concat("id= ").concat(String.valueOf(id))
-                      .concat(", name= ").concat(name)
-                      .concat(", created= ").concat(created.format(FORMATTER))
-                      .concat("}");
+        return String.format("id: %s, name: %s, created: %s", id, name, FORMATTER.format(created));
     }
 
 }

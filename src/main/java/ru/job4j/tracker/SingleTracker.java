@@ -6,7 +6,7 @@ public final class SingleTracker {
 
     private static SingleTracker instance = null;
 
-    private final Tracker tracker = new Tracker();
+    private final MemTracker tracker = new MemTracker();
 
     private SingleTracker() {
 
