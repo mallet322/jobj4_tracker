@@ -150,15 +150,4 @@ public class SqlTracker implements Store {
         }
     }
 
-    private static void createTable(Connection cn) {
-        try (Statement statement = cn.createStatement()) {
-            String ddl =
-                    "create table "
-                            + "items(id serial primary key, name varchar(255), created timestamp);";
-            statement.execute(ddl);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
 }
