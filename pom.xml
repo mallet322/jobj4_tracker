@@ -15,6 +15,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <hamcrest.version>1.3</hamcrest.version>
         <junit.version>4.12</junit.version>
+        <mockito.version>3.12.4</mockito.version>
         <checkstyle.version>8.45</checkstyle.version>
         <checkstyle.mavenplugin.version>3.1.2</checkstyle.mavenplugin.version>
     </properties>
@@ -54,6 +55,12 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
