@@ -35,6 +35,7 @@ public class SqlTrackerTest {
                     "CREATE TABLE IF NOT EXISTS items(\n"
                             + "id serial primary key,"
                             + "name text,"
+                            + "description text,"
                             + "created timestamp\n"
                             + ");"
             ).executeUpdate();
