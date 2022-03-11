@@ -10,12 +10,9 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class HbmTracker implements Store, AutoCloseable {
+public class HbmTracker implements Store {
 
     private static final Logger LOG = LoggerFactory.getLogger(HbmTracker.class);
-
-    private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-            .configure().build();
 
     private SessionFactory sessionFactory;
 
@@ -67,18 +64,6 @@ public class HbmTracker implements Store, AutoCloseable {
             throw e;
         }
         return result == 1;
-    }
-
-    public static void main(String[] args) {
-        HbmTracker tracker = new HbmTracker();
-        tracker.init();
-        tracker.add(new Item("Item1", "Desc1"));
-        tracker.add(new Item("Item2", "Desc2"));
-        tracker.add(new Item("Item3", "Desc3"));
-        tracker.findAll().forEach(System.out::println);
-        tracker.replace(1, new Item("ITEM", "DESC"));
-        tracker.delete(3);
-        tracker.findAll().forEach(System.out::println);
     }
 
     @Override
@@ -153,8 +138,8 @@ public class HbmTracker implements Store, AutoCloseable {
     }
 
     @Override
-    public void close() {
-        StandardServiceRegistryBuilder.destroy(registry);
+    public void close() throws Exception {
+
     }
 
 }
