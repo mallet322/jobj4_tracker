@@ -12,15 +12,20 @@ public class StartUI {
 
     public void init(Input input, Store tracker, List<UserAction> actions) {
         boolean run = true;
-        while (run) {
-            showMenu(actions);
-            int select = input.askInt("Select: ");
-            if (select < 0 || select >= actions.size()) {
-                out.println("Wrong input, you can select: 0 .. " + (actions.size() - 1));
-                continue;
+        try {
+            while (run) {
+                showMenu(actions);
+                int select = input.askInt("Select: ");
+                if (select < 0 || select >= actions.size()) {
+                    out.println("Wrong input, you can select: 0 .. " + (actions.size() - 1));
+                    continue;
+                }
+                UserAction action = actions.get(select);
+                run = action.execute(input, tracker);
             }
-            UserAction action = actions.get(select);
-            run = action.execute(input, tracker);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            Thread.currentThread().interrupt();
         }
     }
 
@@ -35,7 +40,7 @@ public class StartUI {
     public static void main(String[] args) {
         Output out = new ConsoleOutput();
         Input input = new ValidateInput(out, new ConsoleInput());
-        try (Store tracker = new SqlTracker()) {
+        try (Store tracker = new MemTracker()) {
             tracker.init();
             List<UserAction> actions = List.of(
                     new CreateAction(out),

@@ -1,11 +1,7 @@
 package ru.job4j.tracker;
 
-import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 public class MemTracker implements Store {
 
@@ -13,30 +9,19 @@ public class MemTracker implements Store {
 
     private int ids = 1;
 
-    private Connection cn;
-
     @Override
     public void init() {
-        try (InputStream in = SqlTracker.class.getClassLoader()
-                                              .getResourceAsStream("app.properties")) {
-            Properties config = new Properties();
-            config.load(in);
-            Class.forName(config.getProperty("driver-class-name"));
-            cn = DriverManager.getConnection(
-                    config.getProperty("url"),
-                    config.getProperty("username"),
-                    config.getProperty("password")
-            );
-        } catch (Exception e) {
-            throw new IllegalStateException(e);
-        }
+        items.add(new Item("first"));
+        items.add(new Item("second"));
+        items.add(new Item("third"));
+        items.add(new Item("fourth"));
+        items.add(new Item("fifth"));
+        items.add(new Item("sixth"));
     }
 
     @Override
-    public void close() throws Exception {
-        if (cn != null) {
-            cn.close();
-        }
+    public void close() {
+        items.clear();
     }
 
     public Item add(Item item) {
@@ -65,6 +50,14 @@ public class MemTracker implements Store {
     @Override
     public List<Item> findAll() {
         return List.copyOf(items);
+    }
+
+    @Override
+    public void findAllByReact(Observe<Item> observe) throws InterruptedException {
+        for (Item item : items) {
+            Thread.sleep(1000);
+            observe.receive(item);
+        }
     }
 
     @Override

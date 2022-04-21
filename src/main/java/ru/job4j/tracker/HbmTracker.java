@@ -103,6 +103,14 @@ public class HbmTracker implements Store {
     }
 
     @Override
+    public void findAllByReact(Observe<Item> observe) throws InterruptedException {
+        for (Item item : findAll()) {
+            Thread.sleep(1000);
+            observe.receive(item);
+        }
+    }
+
+    @Override
     public List<Item> findByName(String key) {
         Session session = sessionFactory.openSession();
         List<Item> result;
