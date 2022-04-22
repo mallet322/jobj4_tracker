@@ -13,6 +13,8 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import ru.job4j.tracker.model.Item;
+import ru.job4j.tracker.store.impl.SqlTracker;
 
 public class SqlTrackerTest {
 

@@ -5,6 +5,19 @@ import java.util.List;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
+import ru.job4j.tracker.action.impl.CreateAction;
+import ru.job4j.tracker.action.impl.DeleteAction;
+import ru.job4j.tracker.action.impl.ExitAction;
+import ru.job4j.tracker.action.impl.FindByIdAction;
+import ru.job4j.tracker.action.impl.FindByNameAction;
+import ru.job4j.tracker.action.impl.ReplaceAction;
+import ru.job4j.tracker.action.UserAction;
+import ru.job4j.tracker.input.Input;
+import ru.job4j.tracker.input.impl.StubInput;
+import ru.job4j.tracker.model.Item;
+import ru.job4j.tracker.output.Output;
+import ru.job4j.tracker.output.StubOutput;
+import ru.job4j.tracker.store.impl.MemTracker;
 
 public class StartUITest {
 
@@ -47,30 +60,6 @@ public class StartUITest {
         List<UserAction> actions = List.of(new DeleteAction(out), new ExitAction(out));
         new StartUI(out).init(input, tracker, actions);
         Assert.assertNull(tracker.findById(item.getId()));
-    }
-
-    @Test
-    public void whenShowAllItems() {
-        Output out = new StubOutput();
-        MemTracker tracker = new MemTracker();
-        Item item = new Item(1, "Some Item");
-        tracker.add(item);
-        String[] answers = {"0", "1"};
-        Input input = new StubInput(answers);
-        List<UserAction> actions = List.of(new FindAllAction(out), new ExitAction(out));
-        new StartUI(out).init(input, tracker, actions);
-        String ln = System.lineSeparator();
-        String actual =
-                "Menu.".concat(ln)
-                       .concat("0. Show all items").concat(ln)
-                       .concat("1. Exit").concat(ln)
-                       .concat("=== Show all items ===") .concat(ln)
-                       .concat(item.toString()).concat(ln)
-                       .concat("Menu.").concat(ln)
-                       .concat("0. Show all items").concat(ln)
-                       .concat("1. Exit").concat(ln)
-                       .concat("=== Exit ===").concat(ln);
-        Assert.assertThat(out.toString(), Matchers.is(actual));
     }
 
     @Test

@@ -7,6 +7,9 @@ import java.util.List;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
+import ru.job4j.tracker.model.Item;
+import ru.job4j.tracker.util.SortByNameASC;
+import ru.job4j.tracker.util.SortByNameDESC;
 
 public class SortByNameTest {
 
